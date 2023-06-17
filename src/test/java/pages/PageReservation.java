@@ -31,7 +31,7 @@ public class PageReservation {
         Assert.assertTrue(driver.findElement(titleText).getText().contains("Flight Finder to search"));
     }
     public void selectPassengers(int cant){
-
+        // WebDriverWait es un Explicit wait para controlar la presencia de un elemento ha sido encontrado al hacer clic.
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement cantidadPasajeros = wait.until(ExpectedConditions.presenceOfElementLocated(passengersDrop));
         //dropdwn son los select --- lista desplegable

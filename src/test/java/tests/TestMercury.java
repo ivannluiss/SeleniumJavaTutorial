@@ -4,10 +4,7 @@ import helpers.Helpers;
 import helpers.Screenshooter;
 import helpers.WebDriverManager;
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestResult;
@@ -33,6 +30,10 @@ public class TestMercury {
         System.setProperty("webdriver.chrome.driver","src/test/resources/driver/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
+        //driver.manage().window().fullscreen();
+        //driver.manage().window().setSize(new Dimension(200,200));
+        //driver.manage().window().setPosition(new Point(500,500));
+
         // driver.navigate().to("https://demoqa.com/text-box");
         driver.get("https://demo.guru99.com/test/newtours/index.php");
 

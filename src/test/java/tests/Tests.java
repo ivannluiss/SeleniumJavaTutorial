@@ -9,7 +9,7 @@ public class Tests {
 
     @Test
     public void testNumeroVerdadero(){
-        Assert.assertTrue(numeroUno==numeroDos+1,"El nro. no es verdadero: "+ String.valueOf(numeroUno));
+        Assert.assertTrue(numeroUno==numeroDos+2,"El nro. no es verdadero: "+ String.valueOf(numeroUno));
     }
 
     @Test
@@ -50,7 +50,7 @@ public class Tests {
     public void mismoObjeto(){
         // dos objetos que tienen lo mismo
         Personas personaUno = new Personas("Pepe","Gonzalez");
-        Personas personaDos = personaUno;
+        Personas personaDos = personaUno; // ambos apuntan al mismo objeto
 
         Assert.assertSame(personaUno,personaDos);
     }
