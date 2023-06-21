@@ -21,9 +21,11 @@ public class PageLogin {
     private WebElement userFieldMerElement;
     @FindBy(how = How.NAME,using = "password")
     private WebElement passwordFieldMerElement;
-
     @FindBy(how = How.NAME,using = "submit")
     private WebElement loginButtonMerElement;
+
+    @FindBy(how = How.TAG_NAME,using = "input")
+    private List<WebElement> fields;
 
     private By userField;
     private By passwordField;
@@ -35,7 +37,7 @@ public class PageLogin {
 
     private By buttonFlights;
 
-    private By fields;
+    //private By fields;
 
 
 
@@ -49,7 +51,7 @@ public class PageLogin {
        // passwordFieldMer=By.name("password");
       //  loginButtonMer=By.name("submit");
         buttonFlights=By.xpath("/html/body/div[2]/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[2]/td[2]/a");
-        fields = By.tagName("input");
+       // fields = By.tagName("input");
         PageFactory.initElements(driver,this);
     }
 
@@ -97,15 +99,15 @@ public class PageLogin {
         //helper.sleepSeconds(5);
     }
     public void fields_login(String user,String pass){
-        List<WebElement> loginFields = driver.findElements(fields);
-        loginFields.get(1).sendKeys(user);
-        loginFields.get(2).sendKeys(pass);
+        //List<WebElement> loginFields = driver.findElements(fields);
+        fields.get(1).sendKeys(user);
+        fields.get(2).sendKeys(pass);
         driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
     }
     public void verifyFields(){
-        List<WebElement> loginFields = driver.findElements(fields);
-        System.out.println("Número de objetos Tipo input son: "+loginFields.size());
-        Assert.assertTrue(loginFields.size()==4);
+       // List<WebElement> loginFields = driver.findElements(fields);
+        System.out.println("Número de objetos Tipo input son: "+fields.size());
+        Assert.assertTrue(fields.size()==4);
     }
 
 }

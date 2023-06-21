@@ -79,6 +79,11 @@ public class TestMercury {
         PageLogin pageLogin=new PageLogin(driver);
         pageLogin.verifyFields();
     }
+    @Test
+    public void PruebaCampos(){
+        PageLogin pageLogin = new PageLogin(driver);
+        pageLogin.fields_login("ivan","ivan");
+    }
     @AfterMethod
     public void TearDown(ITestResult result){ //
         if (!result.isSuccess()){
