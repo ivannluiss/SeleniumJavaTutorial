@@ -22,14 +22,14 @@ import java.util.concurrent.TimeUnit;
 
 public class TestMercury {
     private WebDriver driver;
-    ArrayList<String> tabs;
+    //ArrayList<String> tabs;
 
     @BeforeMethod
     public void setUpMer(){
         DesiredCapabilities caps = new DesiredCapabilities();
         System.setProperty("webdriver.chrome.driver","src/test/resources/driver/chromedriver.exe");
         driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        //driver.manage().window().maximize();
         //driver.manage().window().fullscreen();
         //driver.manage().window().setSize(new Dimension(200,200));
         //driver.manage().window().setPosition(new Point(500,500));
@@ -37,11 +37,11 @@ public class TestMercury {
         // driver.navigate().to("https://demoqa.com/text-box");
         driver.get("https://demo.guru99.com/test/newtours/index.php");
 
-        JavascriptExecutor javascriptExecutor = (JavascriptExecutor)driver;
-        String googleWindow = "window.open('https://google.com')";
-        javascriptExecutor.executeScript(googleWindow);
+        //JavascriptExecutor javascriptExecutor = (JavascriptExecutor)driver;
+        //String googleWindow = "window.open('https://google.com')";
+        //javascriptExecutor.executeScript(googleWindow);
 
-        tabs = new ArrayList<String>(driver.getWindowHandles()); // getWindowHandles tenemos todos los tabs
+        //tabs = new ArrayList<String>(driver.getWindowHandles()); // getWindowHandles tenemos todos los tabs
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
@@ -51,8 +51,8 @@ public class TestMercury {
     @Test
     public void pruebaUnoMercury(){
         WebDriverManager.setWindowSize(driver,"maximized");
-        driver.switchTo().window(tabs.get(1)).navigate().to("https://www.youtube.com/user/Draculinio");
-        driver.switchTo().window(tabs.get(0));
+      //  driver.switchTo().window(tabs.get(1)).navigate().to("https://www.youtube.com/user/Draculinio");
+      //  driver.switchTo().window(tabs.get(0));
         PageLogin pageLogin = new PageLogin(driver);
         PageLogon pageLogon = new PageLogon(driver);
         pageLogin.loginMercury("ivan","ivan");
@@ -61,8 +61,8 @@ public class TestMercury {
     }
     @Test
     public void ReservationMercury(){
-        WebDriverManager.setWindowSize(driver,"fullscreen");
-      //  driver.switchTo().window(tabs.get(1));
+        WebDriverManager.setWindowSize(driver,"maximized");
+      //  driver.switchTo().window(tabs.get(1)).navigate().to("https://www.youtube.com/user/Draculinio");
       //  driver.switchTo().window(tabs.get(0));
 
         PageLogin pageLogin = new PageLogin(driver);
@@ -84,10 +84,10 @@ public class TestMercury {
         if (!result.isSuccess()){
             Screenshooter.takeScreenshots("Error",driver);
         }
-        driver.switchTo().window(tabs.get(1)).close();
-        driver.switchTo().window(tabs.get(0)).close();
-        //driver.manage().deleteAllCookies();
-        //driver.close();
-        //driver.quit();
+       // driver.switchTo().window(tabs.get(1)).close();
+       // driver.switchTo().window(tabs.get(0)).close();
+        driver.manage().deleteAllCookies();
+        driver.close();
+        driver.quit();
     }
 }
