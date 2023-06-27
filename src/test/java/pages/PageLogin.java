@@ -17,12 +17,15 @@ public class PageLogin {
 
     private WebDriver driver;
 
-    @FindBy(how = How.NAME,using = "userName")
+    @FindBy(name = "userName")
     private WebElement userFieldMerElement;
-    @FindBy(how = How.NAME,using = "password")
+    @FindBy(name = "password")
     private WebElement passwordFieldMerElement;
     @FindBy(how = How.NAME,using = "submit")
     private WebElement loginButtonMerElement;
+    @FindBy(xpath = "/html/body/div[2]/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[2]/td[2]/a")
+    private WebElement buttonFlightsElement;
+
 
     @FindBy(how = How.TAG_NAME,using = "input")
     private List<WebElement> fields;
@@ -35,7 +38,7 @@ public class PageLogin {
     //private By passwordFieldMer;
     //private By loginButtonMer;
 
-    private By buttonFlights;
+    //private By buttonFlights;
 
     //private By fields;
 
@@ -50,7 +53,7 @@ public class PageLogin {
        // userFieldMer=By.name("userName");
        // passwordFieldMer=By.name("password");
       //  loginButtonMer=By.name("submit");
-        buttonFlights=By.xpath("/html/body/div[2]/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[2]/td[2]/a");
+      //  buttonFlights=By.xpath("/html/body/div[2]/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[2]/td[2]/a");
        // fields = By.tagName("input");
         PageFactory.initElements(driver,this);
     }
@@ -86,8 +89,8 @@ public class PageLogin {
         //driver.findElement(userFieldMer).sendKeys(user);
         passwordFieldMerElement.sendKeys(pass);
         //driver.findElement(passwordFieldMer).sendKeys(pass);
-
-        driver.findElement(buttonFlights).click();
+        buttonFlightsElement.click();
+        //driver.findElement(buttonFlights).click();
        /*File myScreenshot=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
        try{
             FileUtils.copyFile(myScreenshot,new File("LOGIN "+System.currentTimeMillis()+".png"));
