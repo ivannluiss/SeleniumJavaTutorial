@@ -6,6 +6,7 @@ import helpers.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -22,13 +23,20 @@ import java.util.concurrent.TimeUnit;
 
 public class TestMercury {
     private WebDriver driver;
-    //ArrayList<String> tabs;
+    ArrayList<String> tabs;
 
     @BeforeMethod
     public void setUpMer(){
         DesiredCapabilities caps = new DesiredCapabilities();
         System.setProperty("webdriver.chrome.driver","src/test/resources/driver/chromedriver.exe");
-        driver = new ChromeDriver();
+
+        //Ejecución de Chrome sin entorno visual
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--headless");
+        driver = new ChromeDriver(chromeOptions);
+
+        //driver = new ChromeDriver();
+
         //driver.manage().window().maximize();
         //driver.manage().window().fullscreen();
         //driver.manage().window().setSize(new Dimension(200,200));
@@ -83,6 +91,11 @@ public class TestMercury {
     public void PruebaCampos(){
         PageLogin pageLogin = new PageLogin(driver);
         pageLogin.fields_login("ivan","ivan");
+    }
+    @Test
+    public void pruebaTituloEnUsuario(){
+        PageLogin pageLogin = new PageLogin(driver);
+        pageLogin.putTitleInUserField();
     }
     @AfterMethod
     public void TearDown(ITestResult result){ //

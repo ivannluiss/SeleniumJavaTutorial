@@ -113,4 +113,10 @@ public class PageLogin {
         Assert.assertTrue(fields.size()==4);
     }
 
+    public void putTitleInUserField(){
+        String title= driver.getTitle();
+        userFieldMerElement.sendKeys(title);
+        Assert.assertEquals("Welcome: Mercury Tours",title);
+    }
+
 }
