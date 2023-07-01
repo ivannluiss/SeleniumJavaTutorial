@@ -21,11 +21,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-public class TestMercury {
-    private WebDriver driver;
-    ArrayList<String> tabs;
+public class TestMercury extends CondicionesComunes {
+   // private WebDriver driver;
+   // ArrayList<String> tabs;
 
-    @BeforeMethod
+    /*@BeforeMethod
     public void setUpMer(){
 
         //Para identificar el sistema operativo que se ejecuta
@@ -64,8 +64,8 @@ public class TestMercury {
 
        // Helpers helper = new Helpers();
        // helper.sleepSeconds(5);
-    }
-    @Test(description = "Login Mercury")
+    }*/
+    @Test(description = "Login Mercury",enabled = false)
     public void pruebaUnoMercury(){
         WebDriverManager.setWindowSize(driver,"maximized");
       //  driver.switchTo().window(tabs.get(1)).navigate().to("https://www.youtube.com/user/Draculinio");
@@ -76,7 +76,7 @@ public class TestMercury {
         pageLogon.assertLogonMercury();
 
     }
-    @Test(description = "Reservación")
+    /*@Test(description = "Reservación",enabled = true)
     public void ReservationMercury(){
         WebDriverManager.setWindowSize(driver,"maximized");
       //  driver.switchTo().window(tabs.get(1)).navigate().to("https://www.youtube.com/user/Draculinio");
@@ -89,24 +89,24 @@ public class TestMercury {
         pageReservation.selectFromPort(3);
         pageReservation.selectToPort("London");
 
-    }
+    }*/
 
-    @Test(description = "Verificar la cantidad de campos que tiene el login")
+    @Test(description = "Verificar la cantidad de campos que tiene el login", enabled = true)
     public void PruebaCantidadCampos(){
         PageLogin pageLogin=new PageLogin(driver);
         pageLogin.verifyFields();
     }
-    @Test(description = "Verificar los campos de login ingresados")
+    @Test(description = "Verificar los campos de login ingresados", enabled = false)
     public void PruebaCampos(){
         PageLogin pageLogin = new PageLogin(driver);
         pageLogin.fields_login("ivan","ivan");
     }
-    @Test(description = "Verifica el titulo correcto en el login")
+    @Test(description = "Verifica el titulo correcto en el login", enabled = false)
     public void pruebaTituloEnUsuario(){
         PageLogin pageLogin = new PageLogin(driver);
         pageLogin.putTitleInUserField();
     }
-    @AfterMethod
+    /*@AfterMethod
     public void TearDown(ITestResult result){ //
         System.out.println("El Test "+ result.getMethod().getDescription()+ " resulto: "+result.getStatus());
         if (!result.isSuccess()){
@@ -117,5 +117,5 @@ public class TestMercury {
         driver.manage().deleteAllCookies();
         driver.close();
         driver.quit();
-    }
+    }*/
 }
