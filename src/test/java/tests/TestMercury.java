@@ -27,15 +27,24 @@ public class TestMercury {
 
     @BeforeMethod
     public void setUpMer(){
-        DesiredCapabilities caps = new DesiredCapabilities();
-        System.setProperty("webdriver.chrome.driver","src/test/resources/driver/chromedriver.exe");
+
+        //Para identificar el sistema operativo que se ejecuta
+        String driverByos="";
+        System.out.println(System.getProperty("os.name"));
+        if (System.getProperty("os.name").equals("Windows 10")){
+            driverByos = "src/test/resources/driver/chromedriver.exe";
+        }else {
+            driverByos="src/test/resources/driver/chromedriver";
+        }
+        //DesiredCapabilities caps = new DesiredCapabilities();
+        System.setProperty("webdriver.chrome.driver",driverByos);
 
         //Ejecución de Chrome sin entorno visual
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless");
-        driver = new ChromeDriver(chromeOptions);
+       // ChromeOptions chromeOptions = new ChromeOptions();
+       // chromeOptions.addArguments("--headless");
+       // driver = new ChromeDriver(chromeOptions);
 
-        //driver = new ChromeDriver();
+        driver = new ChromeDriver();
 
         //driver.manage().window().maximize();
         //driver.manage().window().fullscreen();
@@ -56,7 +65,7 @@ public class TestMercury {
        // Helpers helper = new Helpers();
        // helper.sleepSeconds(5);
     }
-    @Test
+    @Test(description = "Login Mercury")
     public void pruebaUnoMercury(){
         WebDriverManager.setWindowSize(driver,"maximized");
       //  driver.switchTo().window(tabs.get(1)).navigate().to("https://www.youtube.com/user/Draculinio");
@@ -67,7 +76,7 @@ public class TestMercury {
         pageLogon.assertLogonMercury();
 
     }
-    @Test
+    @Test(description = "Reservación")
     public void ReservationMercury(){
         WebDriverManager.setWindowSize(driver,"maximized");
       //  driver.switchTo().window(tabs.get(1)).navigate().to("https://www.youtube.com/user/Draculinio");
@@ -82,23 +91,24 @@ public class TestMercury {
 
     }
 
-    @Test
+    @Test(description = "Verificar la cantidad de campos que tiene el login")
     public void PruebaCantidadCampos(){
         PageLogin pageLogin=new PageLogin(driver);
         pageLogin.verifyFields();
     }
-    @Test
+    @Test(description = "Verificar los campos de login ingresados")
     public void PruebaCampos(){
         PageLogin pageLogin = new PageLogin(driver);
         pageLogin.fields_login("ivan","ivan");
     }
-    @Test
+    @Test(description = "Verifica el titulo correcto en el login")
     public void pruebaTituloEnUsuario(){
         PageLogin pageLogin = new PageLogin(driver);
         pageLogin.putTitleInUserField();
     }
     @AfterMethod
     public void TearDown(ITestResult result){ //
+        System.out.println("El Test "+ result.getMethod().getDescription()+ " resulto: "+result.getStatus());
         if (!result.isSuccess()){
             Screenshooter.takeScreenshots("Error",driver);
         }
